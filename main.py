@@ -11,7 +11,7 @@ video_capture = cv2.VideoCapture(0)
 dhoni_image = face_recognition.load_image_file("images/dhoni.jpg")
 dhoni_face_encoding = face_recognition.face_encodings(dhoni_image)[0]
 
-virat_image = face_recognition.load_image_file("images/virat.jpg")
+virat_image = face_recognition.load_image_file("images/Kohli.jpg")
 virat_face_encoding = face_recognition.face_encodings(virat_image)[0]
 
 known_face_encodings = [
@@ -52,11 +52,12 @@ while True:
             best_match_index = np.argmin(face_distence)
             if marches[best_match_index]:
                 name = known_face_names[best_match_index]
+                print(name)
             face_names.append(name)
             if name in known_face_names:
                 if name in students:
-                    students.remove(name)
                     print(students)
+                    students.remove(name)
                     current_time = now.strftime("%H:%M:%S")
                     lnwriter.writerow([name, current_date, current_time])
         cv2.imshow("attendence system", frame)
